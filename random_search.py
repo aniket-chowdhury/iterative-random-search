@@ -4,7 +4,7 @@ def random_list(minmax):
     return l
 
 def objective_function(l):
-    return min([(i**2)+(2*i) for i in l])
+    return min([(i**2)-(6*i)-1 for i in l])
 
 def search(space,iterations):
     best={}
@@ -31,7 +31,7 @@ for space in spaces:
             best=s
     except:
         best=s
-    print(space,best['cost'],objective_function([best['cost']]))
+    print(space,best['cost'])
 print(best)
 
 print([[i,objective_function([i])] for i in range(-10,10)])
