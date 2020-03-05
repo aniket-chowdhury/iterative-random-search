@@ -4,7 +4,7 @@ def random_list(minmax):
     return l
 
 def objective_function(l):
-    return sum([(i**2)+(2*i) for i in l])
+    return min([(i**2)+(2*i) for i in l])
 
 def search(space,iterations):
     best={}
