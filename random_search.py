@@ -4,7 +4,7 @@ def random_list(minmax):
     return l
 
 def objective_function(l):
-    return min([(i**2)-(6*i)-1 for i in l])
+    return min([(i**2)-(2*i)-1 for i in l])
 
 def search(space,iterations):
     best={}
@@ -24,6 +24,13 @@ iterations=100
 
 spaces=[[randint(-10,10) for i in range(2)]for i in range(10)]
 
+
+k=[[i,objective_function([i])] for i in range(-10,10)]
+k=sorted(k,key=lambda x:x[1])
+expected_near=k[0][1]
+
+all=[]
+
 for space in spaces:
     s=search(space,iterations)
     try:
@@ -32,6 +39,12 @@ for space in spaces:
     except:
         best=s
     print(space,best['cost'])
+    all.append(abs(best['cost']-expected_near)**2)
+print()
 print(best)
 
-print([[i,objective_function([i])] for i in range(-10,10)])
+actual=best['cost']
+print()
+print(expected_near,actual)
+print('Squared Error = ',abs(expected_near-actual)**2)
+print('MSE = ',sum(all)/len(all))
